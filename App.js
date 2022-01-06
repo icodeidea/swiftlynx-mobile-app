@@ -26,6 +26,8 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
+import SplashScreen from  "react-native-splash-screen";
+
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -53,6 +55,10 @@ const Section = ({children, title}): Node => {
 };
 
 const App: () => Node = () => {
+  //Hide Splash screen on app load.
+  React.useEffect(() => {
+    SplashScreen.hide();
+  });
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
@@ -65,7 +71,7 @@ const App: () => Node = () => {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <Header />
+        <Header title="Welcome to swiftlynx"/>
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
