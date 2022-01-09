@@ -1,5 +1,4 @@
 import React from 'react';
-import type {Node} from 'react';
 import {
     StatusBar,
     Alert
@@ -13,7 +12,7 @@ import {
     Icon 
   } from 'react-native-elements';
 
-export const OnBoarding: () => Node = ({ getStarted }) => {
+export const OnBoarding = ({ getStarted }) => {
 
     return (
 

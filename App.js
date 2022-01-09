@@ -9,14 +9,10 @@
 import React, { useState } from 'react';
 import type {Node} from 'react';
 import {
-  SafeAreaView,
   StatusBar,
   useColorScheme,
 } from 'react-native';
-
-import {
-  Colors,
-} from 'react-native/Libraries/NewAppScreen';
+import { NavigationContainer } from '@react-navigation/native';
 
 import SplashScreen from  "react-native-splash-screen";
 import {SharedComponent} from './app/components';
@@ -32,27 +28,23 @@ const App: () => Node = () => {
 
   const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
   const getStarted = () => {
     setNewToApp(false);
   }
 
   return (
     <>
-    {
-      !isNewToApp && (
-        <SafeAreaView style={backgroundStyle}>
-          <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-          <MainApp/>
-        </SafeAreaView>
-      )
-    }
-    {
-      isNewToApp && <SharedComponent.OnBoarding getStarted={getStarted}/>
-    }
+      {
+        !isNewToApp && (
+          <NavigationContainer>
+            <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
+            <MainApp/>
+          </NavigationContainer>
+        )
+      }
+      {
+        isNewToApp && <SharedComponent.OnBoarding getStarted={getStarted}/>
+      }
     </>
   );
 };
